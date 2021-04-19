@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container my-4">
+    <h3>Update your note here!</h1>
+    <form action="{% url 'edit' id %}" method="POST" class="my-3" style="display: inline;">
+            {% csrf_token %} 
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label" >Enter the new title</label>
+          <textarea type="textarea" class="form-control" id="exampleInputEmail1" name="newtitle" rows="2" ></textarea>
+         
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label" >Enter the new body</label>
+            <textarea type="textarea" class="form-control" id="exampleInputEmail1" name="newbody" rows="10" ></textarea>
+        </div>
+        
+        <button id="submitbtn" type="submit" class="btn btn-primary" >Update</button>
+        
+        
+      </form>
+      <form action="{% url 'back' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button id="submitbtn" type="submit" class="btn btn-primary">Back</button>
+    </form>
+      
+</div>
+
+{% endblock body %}

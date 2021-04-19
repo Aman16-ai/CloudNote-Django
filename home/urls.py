@@ -4,8 +4,10 @@ from home import views
 
 urlpatterns = [
     path('',views.index,name="home"),
-    path("notes/",views.about, name="about"),
+    path("notes/",views.about, name="notes"),
     path('delete/<int:id>',views.delete,name= "delete"),
-    path('update/<int:id>',views.update,name = "update")
-    # path("noteSubmit/",views.noteSubmit,name='notesubmit')
+    path('update/<int:id>',views.update,name = "update"),
+    path('edit/<int:id>',views.edit,name = "edit"),
+    path('back/',views.back,name="back"),
+    path('search/',views.search,name="search")
 ]

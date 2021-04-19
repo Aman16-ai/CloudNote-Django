@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container">
+    <div id="allnotes">
+        <div class="card " style="width: 100%; margin:1rem; background-color:#40916c; color:white;" >
+            <div class="card-body">
+            <h5 class="card-title">{{note.title}}</h5>
+            <p class="card-text">{{note.body}}</p>
+            <p>{{note.date}}</p>
+            <form action="{% url 'update' note.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <!-- <a style="background-color:#081c15; border:none;" href="#" class="btn btn-primary">Delete</a> -->
+                <button id="btnUpdate" type="submit" style="background-color: #081c15; border:none;" class="btn btn-primary" >Update</button>
+            </form>
+            <form action="{% url 'delete' note.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <!-- <a style="background-color:#081c15; border:none;" href="#" class="btn btn-primary">Delete</a> -->
+                <button id="btnDelete" type="submit" style="background-color: #081c15; border:none;" class="btn btn-primary">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}
