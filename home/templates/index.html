@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Home page{% endblock title %}
+{% block body %}
+
+<div class="container my-4">
+    <h3>Add your note here!</h1>
+    <form action="/" method="POST" class="my-3">
+            {% csrf_token %} 
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label" >Enter the title</label>
+          <textarea type="textarea" class="form-control" id="exampleInputEmail1" name="title" rows="2" ></textarea>
+         
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label" >Enter the body</label>
+            <textarea type="textarea" class="form-control" id="exampleInputEmail1" name="body" rows="10" ></textarea>
+        </div>
+        
+        <button id="submitbtn" type="submit" class="btn btn-primary">Submit</button>
+        
+      </form>
+</div>
+{% endblock body %}
+
+{% block javascript %}
+  <script>
+    
+    
+  </script>
+{% endblock javascript %}
