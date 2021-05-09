@@ -7,15 +7,15 @@
             {% csrf_token %} 
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label" >Enter the new title</label>
-          <textarea type="textarea" class="form-control" id="exampleInputEmail1" name="newtitle" rows="2" ></textarea>
+          <textarea type="textarea" class="form-control" id="exampleInputEmail1" name="newtitle" rows="2" >{{title}}</textarea>
          
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label" >Enter the new body</label>
-            <textarea type="textarea" class="form-control" id="exampleInputEmail1" name="newbody" rows="10" ></textarea>
+            <textarea type="textarea" class="form-control" id="exampleInputEmail1" name="newbody" rows="10" >{{body}}</textarea>
         </div>
         
-        <button id="submitbtn" type="submit" class="btn btn-primary" >Update</button>
+        <button id="submitbtn" type="submit" onclick="submitconfirm" class="btn btn-primary" >Update</button>
         
         
       </form>
@@ -27,3 +27,10 @@
 </div>
 
 {% endblock body %}
+{% block javascript %}
+  <script>
+    function submitconfirm() {
+      window.confirm("do you want to update");
+    }
+  </script>
+{% endblock javascript %}

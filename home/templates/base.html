@@ -27,23 +27,44 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'notes' %}">My notes</a>
                     </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-current="page" href="{% url 'notes' %}">My notes</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="github/">GitHub</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="contactus/">Contact us</a>
-                    </li>
-                    
-                    
+                    </li> 
                 </ul>
                 <form action="{% url 'search' %}" method = "POST" class="d-flex">
                     {% csrf_token %}
                     <input class="form-control me-2" type="search" placeholder="Search" name="searchnote" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+                {% if user.is_authenticated %}
+                <h6 class="mx-3" style="color: white;">Hey {{request.user}}</h6>
+                <form action="logout" method = "POST" class="d-flex">
+                    {% csrf_token %}
+                    <button class="btn btn-success mx-2" type="submit">Log out</button>
+                </form>
+                {% else %}
+                <form action="login_page" method = "POST" class="d-flex">
+                    {% csrf_token %}
+                    <button class="btn btn-success mx-2" type="submit">Log in</button>
+                </form>
+
+                <form action="signup_page" method = "POST" class="d-flex">
+                    {% csrf_token %}
+                    <button class="btn btn-success" type="submit">Sign up</button>
+                </form>
+                {% endif %}
             </div>
         </div>
     </nav>

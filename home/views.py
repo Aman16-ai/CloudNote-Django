@@ -4,6 +4,10 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render, HttpResponse
 from home.models import NotesInfo
 from datetime import datetime
+from django.contrib.auth import authenticate
+from django.contrib.auth import logout
+from django.contrib.auth import login as auth_login
+from django.contrib.auth.models import User
 # Create your views here.
 def index(request):
     if request.method == 'POST':
@@ -28,8 +32,10 @@ def delete(request,id):
         
     return  HttpResponseRedirect('/notes')
     
-def update(request,id):
-    context = {'id':id}
+def update(request,id,title,body):
+    print(title)
+    print(body)
+    context = {'id':id,'title':title,'body':body}
     return render(request,'update.html',context)
    
    
@@ -54,3 +60,43 @@ def search(request):
         context = {'note':note}
         return render(request,'search.html',context)
         
+        
+def handleLogin(request):
+    return render(request,"Login.html")
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['Username_login']
+        password = request.POST['pass_login']
+        print(username)
+        print(password)
+        user = authenticate(username = username, password = password)
+        print(user)
+        if user is not None:
+            auth_login(request,user)
+            return HttpResponseRedirect("/")
+        else:
+            return HttpResponse("Invalid credentials")   
+def handleSignup(request):
+    return render(request,'Signup.html')
+
+def signupUser(request):
+    if request.method == 'POST':
+        username = request.POST['Username']
+        fisrtname = request.POST['Firstname']
+        lastname = request.POST['Lastname']
+        email = request.POST['email']
+        password = request.POST['pass']
+        
+        user = User.objects.create_user(username,email,password)
+        user.first_name = fisrtname
+        user.last_name = lastname
+        user.save()
+        
+        
+        
+    return HttpResponseRedirect("/")
+
+def logoutUser(request):
+    user = logout(request)
+    return HttpResponseRedirect("/")

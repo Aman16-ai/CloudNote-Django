@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Home page{% endblock title %}
 {% block body %}
-
+{% if user.is_authenticated %}
 <div class="container my-4">
     <h3>Add your note here!</h1>
     <form action="/" method="POST" class="my-3">
@@ -20,6 +20,23 @@
         
       </form>
 </div>
+{% else %}
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome!</h1>
+    <p class="lead">Make your personal note here.</p>
+    <hr class="my-4">
+    <p>Please login or sign up.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="login_page" role="button">Login</a>
+    </p>
+
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="signup_page" role="button">Signup</a>
+    </p>
+  </div>
+</div>
+{% endif %}
 {% endblock body %}
 
 {% block javascript %}
