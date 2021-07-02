@@ -35,7 +35,12 @@ def delete(request,id):
 def update(request,id,title,body):
     print(title)
     print(body)
-    context = {'id':id,'title':title,'body':body}
+    # note = NotesInfo.objects.get(pk=id)
+    # print(note)
+    # title = note.title
+    # body = note.body
+    # context = {'id':id,'title':title,'body':body}
+    context = {'id':id,'title':title,'body':body} 
     return render(request,'update.html',context)
    
    
