@@ -8,5 +8,5 @@ class NotesInfo(models.Model):
     title = models.CharField(max_length=50)
     body =models.TextField()
     date = models.DateField(blank=True,null=True)
-   
+    user = models.ForeignKey(User,on_delete=CASCADE,null=True) 
     

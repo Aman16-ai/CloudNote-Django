@@ -14,14 +14,14 @@ def index(request):
         title = request.POST['title']
         body = request.POST['body']
         if title != ' ' or title != '':
-            note = NotesInfo(title= title,body = body,date = datetime.today())    
+            note = NotesInfo(title= title,body = body,date = datetime.today(),user=request.user)    
             note.save()
     
         
     return render(request,'index.html')
 
 def about(request):
-    notes = NotesInfo.objects.all()
+    notes = NotesInfo.objects.filter(user=request.user)
     context = {'notes':notes}
     return render(request,'allnotes.html',context)
 
