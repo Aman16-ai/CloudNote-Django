@@ -9,4 +9,5 @@ class NotesInfo(models.Model):
     body =models.TextField()
     date = models.DateField(blank=True,null=True)
     user = models.ForeignKey(User,on_delete=CASCADE,null=True) 
-    
+    def __str__(self):
+        return self.title

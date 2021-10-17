@@ -14,5 +14,7 @@ urlpatterns = [
     path('signup_page',views.handleSignup,name="handleSignup"),
     path('signup',views.signupUser,name="signupUser"),
     path('logout',views.logoutUser,name="logoutUser"),
-    path('login',views.login,name="login")
+    path('login',views.login,name="login"),
+    path('allnotesjson',views.notesjson,name='notejson'),
+    # path('api_updatenote',views.api_updatenote,name="api_updatenote")
 ]
