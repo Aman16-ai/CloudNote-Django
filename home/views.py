@@ -36,14 +36,11 @@ def delete(request,id):
         
     return  HttpResponseRedirect('/notes')
     
-def update(request,id,title,body):
-    print(title)
-    print(body)
-    # note = NotesInfo.objects.get(pk=id)
-    # print(note)
-    # title = note.title
-    # body = note.body
-    # context = {'id':id,'title':title,'body':body}
+def update(request,id):
+    print("This id of the note is",id)
+    note = NotesInfo.objects.get(pk=id)
+    title = note.title
+    body = note.body
     context = {'id':id,'title':title,'body':body} 
     return render(request,'update.html',context)
    

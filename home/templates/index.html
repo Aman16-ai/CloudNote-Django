@@ -4,16 +4,16 @@
 {% if user.is_authenticated %}
 <div class="container my-4">
     <h3>Add your note here!</h1>
-    <form action="/" method="POST" class="my-3">
+    <form action="/" method="POST" class="my-3" onsubmit="return validation()">
             {% csrf_token %} 
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label" >Enter the title</label>
-          <textarea type="textarea" class="form-control" id="exampleInputEmail1" name="title" rows="2" ></textarea>
+          <textarea type="textarea" class="form-control" id="titletxt" name="title" rows="2" ></textarea>
          
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label" >Enter the body</label>
-            <textarea type="textarea" class="form-control" id="exampleInputEmail1" name="body" rows="10" ></textarea>
+            <textarea type="textarea" class="form-control" id="bodytxt" name="body" rows="10" ></textarea>
         </div>
         
         <button id="submitbtn" type="submit" class="btn btn-primary">Submit</button>
@@ -38,3 +38,22 @@
 </div>
 {% endif %}
 {% endblock body %}
+{% block javascript %}
+<script>
+  function validation() {
+    let title = document.getElementById('titletxt').value;
+    let body = document.getElementById("bodytxt").value;
+    console.log("The title of note is "+title);
+    console.log("The body of the note is "+body);
+    if(title == "" || title == " ") {
+      alert("Title must be entered");
+      return false;
+    }
+    if(body == "" || body == " ") {
+      alert("Body must be entered");
+      return false;
+    }
+
+  }
+</script>
+{% endblock javascript %}

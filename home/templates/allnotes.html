@@ -15,7 +15,7 @@
                 <h5 class="card-title">{{note.title}}</h5>
                 <p class="card-text">{{note.body}}</p>
                 <p>{{note.date}}</p>
-                <form action="{% url 'update' note.id note.title note.body %}" method="post" style="display: inline;">
+                <form action="{% url 'update' note.id %}" method="post" style="display: inline;">
                     {% csrf_token %}
                     <!-- <a style="background-color:#081c15; border:none;" href="#" class="btn btn-primary">Delete</a> -->
                     <button id="btnUpdate" type="submit" style="background-color: #081c15; border:none;" class="btn btn-primary" >Update</button>
